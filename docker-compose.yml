@@ -1,0 +1,20 @@
+services:
+  backend:
+    build:
+      # The path to the directory containing the Dockerfile for the backend service
+      context: ./backend
+      # The name of the Dockerfile for the backend service
+      dockerfile: Dockerfile
+    container_name: data-visualization-demo-backend
+    ports:
+      - "8080:8080"
+
+  frontend:
+    build:
+      # The path to the directory containing the Dockerfile for the frontend service
+      context: ./frontend
+      # The name of the Dockerfile for the frontend service
+      dockerfile: Dockerfile
+    container_name: data-visualization-demo-frontend
+    ports:
+      - "5173:80"

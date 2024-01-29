@@ -1,30 +1,42 @@
-# React + TypeScript + Vite
+# Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Run the Frontend Locally
 
-Currently, two official plugins are available:
+Install Node.js, then run the following commands:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+# Change directory to the frontend
+$ cd path/to/data-visualization-demo/frontend
 
-## Expanding the ESLint configuration
+# Install dependencies specified in package.json
+frontend $ npm install
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+# Run the frontend with Vite dev server
+frontend $ npm run dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+The frontend now is running on http://localhost:5173
+
+```bash
+# Run the frontend and specify the host (your LAN IP address)
+frontend $ npm run dev -- --host
+```
+
+The frontend now is running on http://192.168.0.101:5173/
+
+## Run the Frontend in Docker Locally
+```bash
+# Change directory to the frontend
+$ cd path/to/data-visualization-demo/frontend
+
+# Buld the Docker image:
+# name: data-visualization-demo-frontend, tag: latest (default)
+# context: . (current directory)
+frontend $ docker build -t data-visualization-demo-frontend:latest .
+
+# Run the container:
+# port mapping: 5173:80 (host:container)
+frontend $ docker run -p 5173:80 data-visualization-demo-frontend:latest
+```
+
+The frontend now is running on http://localhost:5173

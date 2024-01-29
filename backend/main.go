@@ -2,10 +2,10 @@ package main
 
 import (
 	"encoding/csv"
+	"fmt"
 	"net/http"
 	"os"
 	"strings"
-	"fmt"
 
 	"github.com/gin-gonic/gin"
 )
@@ -50,7 +50,7 @@ func main() {
 
 func loadData() {
 	// Open the CSV file
-	file, err := os.Open("../data/us-500.csv")
+	file, err := os.Open("data/us-500.csv")
 	if err != nil {
 		panic("Failed to open CSV file: " + err.Error())
 	}
@@ -59,8 +59,8 @@ func loadData() {
 
 	// Create a new reader
 	reader := csv.NewReader(file)
-	reader.Comma = ',' // CSV fields are separated by commas
-	reader.LazyQuotes = true // Allow quotes in a field
+	reader.Comma = ','             // CSV fields are separated by commas
+	reader.LazyQuotes = true       // Allow quotes in a field
 	reader.TrimLeadingSpace = true // Trim leading space
 
 	// Read all the records

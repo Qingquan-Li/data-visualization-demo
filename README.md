@@ -31,14 +31,15 @@ Task:
   - Frameworks/Libraries:
     - Gin
 - Deployment:
-    - Docker on a Linux Server
-    - Nginx (TODO)
+    - Linux Server
+    - Docker
+    - Nginx
     - Kubernetes (TODO)
 - CI/CD:
-    - GitHub Actions (TODO)
+    - GitHub Actions
 
 
-## 3. Run the Project (TODO)
+## 3. Run the Project (Production)
 
 Install Docker and Docker Compose, then run the following commands:
 
@@ -51,7 +52,7 @@ $ docker-compose -f docker-compose.prod.yml pull
 $ docker-compose -f docker-compose.prod.yml up -d
 ```
 
-The project now is running on http://localhost:5173
+The project now is running on http://localhost:5174
 
 
 ## 4. Build the Docker Images

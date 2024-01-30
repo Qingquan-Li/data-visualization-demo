@@ -76,6 +76,8 @@ $ docker compose up -d
 $ docker compose down
 ```
 
+Note: You can change the `RootAPIURL` in `frontend/src/components/RootAPIURL.ts`.
+
 ### 4.2 Build the Docker Images with GitHub Actions (Production)
 
 Details: check out `.github/workflows/docker_build.yml`

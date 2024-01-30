@@ -71,7 +71,20 @@ server {
 $ sudo ln -s /etc/nginx/sites-available/data-visualization-demo /etc/nginx/sites-enabled/
 ```
 
-## 4. Optional: Configure HTTPS
+
+## 4. Test the Nginx configuration:
+```bash
+$ sudo nginx -t
+```
+
+
+## 5. Reload Nginx to apply the changes:
+```bash
+$ sudo systemctl reload nginx
+```
+
+
+## 6. Optional: Configure HTTPS
 
 - Use Cloudflare DNS proxy to enable HTTPS (it can also enable to hide the IP address of the server)
 - Or: Configure Let's Encrypt (certbot) in Nginx to enable HTTPS

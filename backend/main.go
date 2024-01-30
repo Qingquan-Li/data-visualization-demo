@@ -143,7 +143,10 @@ func searchData(c *gin.Context) {
 		return
 	}
 
-	var results []Person
+	// Search for the target value in the specified field
+	// var results []Person
+	// Initialize as an empty slice to avoid returning null
+	results := []Person{}
 	for _, person := range people {
 		value := getFieldValue(&person, search.SearchField)
 		if strings.EqualFold(value, search.TargetValue) {

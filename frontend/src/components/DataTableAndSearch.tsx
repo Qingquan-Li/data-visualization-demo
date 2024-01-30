@@ -38,16 +38,7 @@ export default function DataTableAndSearch() {
       alert('Please select a field before searching.');
       return;
     }
-    // Convert the target value to a number if the search field is 'zip'
-    // Otherwise, the search will be a string (`zip` field from API is a number)
     let searchValue: string | number = targetValue;
-    if (searchField === 'zip') {
-      searchValue = parseInt(targetValue, 10);
-      if (isNaN(searchValue)) {
-        alert('Please enter a valid ZIP code.');
-        return;
-      }
-    }
     const result = await axios.post(RootAPIURL + '/search', {
       search_field: searchField,
       target_value: searchValue
@@ -69,7 +60,7 @@ export default function DataTableAndSearch() {
 
   return (
     <div className="min-h-screen flex flex-col p-4">
-      
+
       <div className="mb-6">
         <select className="border p-2 rounded mr-2" value={searchField} onChange={e => setSearchField(e.target.value)}>
           <option value="">Select a field</option>

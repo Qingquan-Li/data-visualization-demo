@@ -1,3 +1,8 @@
+# Data Visualization Demo
+
+<img width="911" alt="Data Visualization Demo Screenshot" src="https://github.com/Qingquan-Li/data-visualization-demo/assets/19491358/ec492097-1e5e-4f21-9234-61c5a89a54a8">
+
+
 ## 1. About the Project
 
 Given: a dataset that contains the name, company, address and contact information of 500 people in the US (randomly generated).

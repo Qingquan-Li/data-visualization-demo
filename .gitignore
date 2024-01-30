@@ -4,4 +4,4 @@
 
 ########## For frontend (JavaScript/React) ##########
 frontend/node_modules/
-frontend/build/
+frontend/dist/

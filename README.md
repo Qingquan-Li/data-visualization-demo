@@ -39,12 +39,14 @@ Task:
     - Linux Server
     - Docker
     - Nginx
-    - Kubernetes (TODO)
+    - Kubernetes (MicroK8s)
 - CI/CD:
     - GitHub Actions
 
 
 ## 3. Run the Project (Production)
+
+### 3.1 Run the Project using Docker Compose
 
 Install Docker and Docker Compose, then run the following commands:
 
@@ -59,6 +61,18 @@ $ docker-compose -f docker-compose.prod.yml up -d
 
 The project now is running on http://localhost:5174
 
+### 3.2 Run the Project using Kubernetes
+
+Install Kubernetes and kubectl, then run the following commands:
+
+```bash
+# Go to the project directory:
+$ cd path/to/data-visualization-demo
+# Apply the Kubernetes yaml files:
+$ kubectl apply -f k8s
+```
+
+The project now is running on http://localhost:30011
 
 ## 4. Build the Docker Images
 

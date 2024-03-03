@@ -96,9 +96,14 @@ func loadData() {
 
 func CORSMiddleware() gin.HandlerFunc {
 	allowedOrigins := []string{
+		// Vite dev server port: 5173
 		"http://localhost:5173",
 		"http://192.168.0.101:5173",
+		// Kubernetes node port: 30011
+		"http://localhost:30011",
+		// Domain names
 		"https://data-visualization-demo.qingquanli.com",
+		"https://csv-data-visualization.qingquanli.com",
 	}
 
 	return func(c *gin.Context) {

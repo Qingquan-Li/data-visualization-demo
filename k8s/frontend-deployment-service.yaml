@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: qingquanli/data-visualization-demo-frontend:latest
+        image: qingquanli/data-visualization-demo-frontend:dev
         imagePullPolicy: Always
         ports:
         - containerPort: 80

@@ -7,7 +7,10 @@ Use Nginx as a reverse proxy to serve a TypeScript/React frontend and a Go/Gin b
 $ sudo vim /etc/nginx/sites-available/data-visualization-demo
 ```
 
+
 ## 2. Add the following configuration:
+
+### 2.1 Deploy with Docker Compose
 ```conf
 # /etc/nginx/sites-available/data-visualization-demo
 
@@ -17,13 +20,43 @@ server {
     listen 80;
 
     # Define the domain name.
-    server_name data-visualization-demo.qingquanli.com csv-data-visualization.qingquanli.com;
+    server_name data-visualization-demo.qingquanli.com;
 
     # Define the location for the API endpoint (Go/Gin backend).
     location /api {
-        # Deploy with Docker Compose. 8003 is set in the docker-compose.prod.yml.
-        # proxy_pass http://localhost:8003;
-        # Deploy with Kubernetes. 30010 is the Kubernetes nodePort set in a Kubernetes yaml file.
+        # 8003 is set in the docker-compose.prod.yml.
+        proxy_pass http://localhost:8003;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+
+    # Define the location for the root URL (TypeScript/React frontend).
+    location / {
+        # 5174 is set in the docker-compose.prod.yml.
+        proxy_pass http://localhost:5174;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+}
+```
+
+### 2.2 Deploy with Kubernetes
+```conf
+# /etc/nginx/sites-available/csv-data-visualization
+
+# Define a server block.
+server {
+    # Listen on port 80 (default HTTP port).
+    listen 80;
+
+    # Define the domain name.
+    server_name csv-data-visualization.qingquanli.com;
+
+    # Define the location for the API endpoint (Go/Gin backend).
+    location /api {
+        # 30010 is the Kubernetes nodePort set in a Kubernetes yaml file.
         proxy_pass http://localhost:30010;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
@@ -32,9 +65,7 @@ server {
 
     # Define the location for the root URL (TypeScript/React frontend).
     location / {
-        # Deploy with Docker Compose. 5174 is set in the docker-compose.prod.yml.
-        # proxy_pass http://localhost:5174;
-        # Deploy with Kubernetes. 30011 is the Kubernetes nodePort set in a Kubernetes yaml file.
+        # 30011 is the Kubernetes nodePort set in a Kubernetes yaml file.
         proxy_pass http://localhost:30011;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
@@ -42,6 +73,7 @@ server {
     }
 }
 ```
+
 
 ## 3. Create a symbolic link to the file in the /etc/nginx/sites-enabled directory:
 ```bash

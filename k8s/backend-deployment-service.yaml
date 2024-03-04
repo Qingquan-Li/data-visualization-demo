@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
       - name: backend
-        image: qingquanli/data-visualization-demo-backend:latest
+        image: qingquanli/data-visualization-demo-backend:dev
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
         resources:

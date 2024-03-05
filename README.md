@@ -44,24 +44,7 @@ Task:
     - GitHub Actions
 
 
-## 3. Run the Project (Production)
-
-### 3.1 Run the Project using Docker Compose
-
-Install Docker and Docker Compose, then run the following commands:
-
-```bash
-# Go to the project directory:
-$ cd path/to/data-visualization-demo
-# Pull the latest images specified in docker-compose.prod.yml:
-$ docker-compose -f docker-compose.prod.yml pull
-# Run the containers with Docker Compose in detached mode:
-$ docker-compose -f docker-compose.prod.yml up -d
-```
-
-The project now is running on http://localhost:5174
-
-### 3.2 Run the Project using Kubernetes
+## 3. Run the Project with Kubernetes
 
 Install Kubernetes and kubectl, then run the following commands:
 
@@ -72,7 +55,10 @@ $ cd path/to/data-visualization-demo
 $ kubectl apply -f k8s
 ```
 
-The project now is running on http://localhost:30011
+The project will be running on http://localhost:30011
+
+## TODO: Optional: Manage the Containers/Kubernetes using the Kubernetes Dashboard
+Put the Kubernetes dashboard screenshot here
 
 ## 4. Build the Docker Images
 

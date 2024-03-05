@@ -8,6 +8,7 @@ $ sudo vim /etc/nginx/sites-available/data-visualization-demo
 ```
 
 ## 2. Add the following configuration:
+
 ```conf
 # /etc/nginx/sites-available/data-visualization-demo
 
@@ -16,14 +17,12 @@ server {
     # Listen on port 80 (default HTTP port).
     listen 80;
 
-    # Define the domain name.
+    # Define the domain name(s).
     server_name data-visualization-demo.qingquanli.com csv-data-visualization.qingquanli.com;
 
     # Define the location for the API endpoint (Go/Gin backend).
     location /api {
-        # Deploy with Docker Compose. 8003 is set in the docker-compose.prod.yml.
-        # proxy_pass http://localhost:8003;
-        # Deploy with Kubernetes. 30010 is the Kubernetes nodePort set in a Kubernetes yaml file.
+        # 30010 is the Kubernetes nodePort set in a Kubernetes yaml file.
         proxy_pass http://localhost:30010;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
@@ -32,9 +31,7 @@ server {
 
     # Define the location for the root URL (TypeScript/React frontend).
     location / {
-        # Deploy with Docker Compose. 5174 is set in the docker-compose.prod.yml.
-        # proxy_pass http://localhost:5174;
-        # Deploy with Kubernetes. 30011 is the Kubernetes nodePort set in a Kubernetes yaml file.
+        # 30011 is the Kubernetes nodePort set in a Kubernetes yaml file.
         proxy_pass http://localhost:30011;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
@@ -43,11 +40,11 @@ server {
 }
 ```
 
+
 ## 3. Create a symbolic link to the file in the /etc/nginx/sites-enabled directory:
 ```bash
 $ sudo ln -s /etc/nginx/sites-available/data-visualization-demo /etc/nginx/sites-enabled/
 ```
-
 
 ## 4. Test the Nginx configuration:
 ```bash

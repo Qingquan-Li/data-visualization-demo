@@ -1,7 +1,12 @@
 # Data Visualization Demo
 
+Visualize customer data that is stored in a CSV file:
+
 <img width="911" alt="Data Visualization Demo Screenshot" src="https://github.com/Qingquan-Li/data-visualization-demo/assets/19491358/ec492097-1e5e-4f21-9234-61c5a89a54a8">
 
+Manage the Containers/Kubernetes using the Kubernetes Dashboard:
+
+<img width="2240" alt="Kubernetes Dashboard" src="https://github.com/Qingquan-Li/data-visualization-demo/assets/19491358/a8cb04b8-e50d-49ed-a405-586b65a5cf4b">
 
 ## 1. About the Project
 
@@ -56,9 +61,6 @@ $ kubectl apply -f k8s
 ```
 
 The project will be running on http://localhost:30011
-
-## TODO: Optional: Manage the Containers/Kubernetes using the Kubernetes Dashboard
-Put the Kubernetes dashboard screenshot here
 
 ## 4. Build the Docker Images
 

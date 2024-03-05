@@ -7,10 +7,8 @@ Use Nginx as a reverse proxy to serve a TypeScript/React frontend and a Go/Gin b
 $ sudo vim /etc/nginx/sites-available/data-visualization-demo
 ```
 
-
 ## 2. Add the following configuration:
 
-### 2.1 Deploy with Docker Compose
 ```conf
 # /etc/nginx/sites-available/data-visualization-demo
 
@@ -19,40 +17,8 @@ server {
     # Listen on port 80 (default HTTP port).
     listen 80;
 
-    # Define the domain name.
-    server_name data-visualization-demo.qingquanli.com;
-
-    # Define the location for the API endpoint (Go/Gin backend).
-    location /api {
-        # 8003 is set in the docker-compose.prod.yml.
-        proxy_pass http://localhost:8003;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    }
-
-    # Define the location for the root URL (TypeScript/React frontend).
-    location / {
-        # 5174 is set in the docker-compose.prod.yml.
-        proxy_pass http://localhost:5174;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    }
-}
-```
-
-### 2.2 Deploy with Kubernetes
-```conf
-# /etc/nginx/sites-available/csv-data-visualization
-
-# Define a server block.
-server {
-    # Listen on port 80 (default HTTP port).
-    listen 80;
-
-    # Define the domain name.
-    server_name csv-data-visualization.qingquanli.com;
+    # Define the domain name(s).
+    server_name data-visualization-demo.qingquanli.com csv-data-visualization.qingquanli.com;
 
     # Define the location for the API endpoint (Go/Gin backend).
     location /api {
@@ -79,7 +45,6 @@ server {
 ```bash
 $ sudo ln -s /etc/nginx/sites-available/data-visualization-demo /etc/nginx/sites-enabled/
 ```
-
 
 ## 4. Test the Nginx configuration:
 ```bash
